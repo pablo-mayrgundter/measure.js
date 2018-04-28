@@ -133,11 +133,10 @@ function Measure(scalar, magnitude, unit) {
   };
 
   this.toString = function() {
-    const canonical = this.convertTo(Magnitude.UNIT);
     let s = '';
-    s += canonical.scalar;
-    s += canonical.magnitude.abbrev;
-    s += canonical.unit.abbrev;
+    s += this.scalar;
+    s += this.magnitude.abbrev;
+    s += this.unit.abbrev;
     return s;
   };
 }

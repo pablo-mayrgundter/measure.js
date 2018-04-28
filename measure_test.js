@@ -48,4 +48,11 @@ tests.add('Test convertTo magnitude', () => {
   tests.assertEquals(Measure.Magnitude.KILO, out.magnitude);
 });
 
+tests.add('Test toString', () => {
+  const input = new Measure(1000, Measure.Magnitude.UNIT, Measure.Unit.METER);
+  tests.assertEquals('1000m', input.toString());
+  const out = input.convertTo(Measure.Magnitude.KILO);
+  tests.assertEquals('1km', out.toString());
+});
+
 tests.run();
