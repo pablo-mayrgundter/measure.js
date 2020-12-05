@@ -1,7 +1,7 @@
-const testing = require('./testing.js');
-const Measure = require('./measure.js');
+import Testing from './lib/testing.js/testing.mjs';
+import Measure from './measure.mjs';
 
-const tests = new testing();
+const tests = new Testing();
 
 // Magnitude
 tests.add('Magnitude from', () => {
