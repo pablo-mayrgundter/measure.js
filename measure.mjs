@@ -117,10 +117,18 @@ export default function Measure(scalar, magnitude, unit) {
   this.magnitude = magnitude || Magnitude.UNIT;
   this.unit = unit;
 
-  this.equals = function(other) {
+  this.identical = function(other) {
     return this.scalar === other.scalar
       && this.magnitude === other.magnitude
       && this.unit === other.unit;
+  }
+
+  this.equals = function(other) {
+    const thisUnit = this.convertToUnit();
+    const otherUnit = other.convertToUnit();
+    return thisUnit.scalar === otherUnit.scalar
+      && thisUnit.magnitude === otherUnit.magnitude
+      && thisUnit.unit === otherUnit.unit;
   }
 
   this.convertTo = function(mag) {
@@ -152,7 +160,7 @@ Measure.parse = function(s) {
     throw 'Given string is null or not string: ' + s;
   }
   //var MEASURE_PATTERN = new RegExp(/(-?\\d+(?:.\\d+)?(?:E\\d+)?)\\s*([khdnmgtpfaezy\u03BC]|(?:yotta|zetta|exa|peta|tera|giga|mega|kilo|hecto|deca|deci|centi|milli|micro|nano|pico|femto|atto|zepto|yocto))?\\s*([mgsAKLn]|(?:meter|gram|second|Ampere|Kelvin|candela|mole))/);
-  const m = s.match(/(-?\d+(?:.\d+)?(?:E\d+)?)\s*([khdnmgtpfaezy\u03BC])?\s*([mgsAKLn])/);
+  const m = s.match(/(-?\d+(?:.\d+)?(?:[eE]\d+)?)\s*([khdnmgtpfaezy\u03BC])?\s*([mgsAKLn])/);
   if (!m) {
     throw 'Could not parse measure from given string: ' + s;
   }

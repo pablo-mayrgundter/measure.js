@@ -3,6 +3,10 @@ import Measure from './measure.mjs';
 
 const tests = new Testing();
 
+function assertEquals(expected, actual) {
+  tests.assertTrue(expected.equals(actual), `expected: ${expected}, actual: ${actual}`);
+}
+
 // Magnitude
 tests.add('Magnitude from', () => {
   tests.assertEquals(1, Measure.Magnitude.KILO.from(1000, Measure.Magnitude.UNIT));
@@ -17,9 +21,16 @@ tests.add('Test equals', () => {
 });
 
 tests.add('Test parse', () => {
-  const expected = new Measure(1, Measure.Magnitude.UNIT, Measure.Unit.METER);
-  const actual = Measure.parse('1 m');
-  tests.assertTrue(expected.equals(actual), `expected: ${expected}, actual: ${actual}`);
+  assertEquals(new Measure(1, Measure.Magnitude.UNIT, Measure.Unit.METER),
+               Measure.parse('1 m'));
+  assertEquals(new Measure(1, Measure.Magnitude.KILO, Measure.Unit.METER),
+               Measure.parse('1000 m'));
+  assertEquals(new Measure(1, Measure.Magnitude.KILO, Measure.Unit.METER),
+               Measure.parse('1e3 m'));
+  assertEquals(new Measure(123.4, Measure.Magnitude.KILO, Measure.Unit.METER),
+               Measure.parse('1.234E5 m'));
+  assertEquals(new Measure(123.4, Measure.Magnitude.KILO, Measure.Unit.METER),
+               Measure.parse('1.234e5 m'));
 });
 
 tests.add('Test scalar not equals', () => {
