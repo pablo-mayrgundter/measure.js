@@ -11,15 +11,6 @@ export default class Magnitude {
   }
 
 
-  lookup(str) {
-    const magnitude = magnitudeByAbbrev[str];
-    if (magnitude) {
-      return magnitude;
-    }
-    return magnitudeByName[str];
-  }
-
-
   /**
    * Converts the given scalar in the given magnitude to the
    * equivalent scalar in this magnitude.
@@ -40,6 +31,15 @@ export default class Magnitude {
 
 // TODO: declare the following as static after Safari adopts:
 // https://github.com/tc39/proposal-static-class-features
+  Magnitude.lookup = str => {
+    const magnitude = magnitudeByAbbrev[str];
+    if (magnitude) {
+      return magnitude;
+    }
+    return magnitudeByName[str];
+  }
+
+
   Magnitude.YOTTA = new Magnitude(24, 'yotta', 'Y');
   Magnitude.ZETTA = new Magnitude(21, 'zetta', 'Z');
   Magnitude.EXA = new Magnitude(18, 'exa', 'E');
