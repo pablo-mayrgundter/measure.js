@@ -1,3 +1,24 @@
 {
-  "type": "module"
+  "name": "measure.js",
+  "version": "1.0.0",
+  "description": "Utility for working with measurements in common units and magnitudes.",
+  "main": "Measure.js",
+  "type": "module",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pablo-mayrgundter/measure.js.git"
+  },
+  "keywords": ["measure", "units", "unit converter", "utility"],
+  "author": "Pablo Mayrgundter",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pablo-mayrgundter/measure.js/issues"
+  },
+  "homepage": "https://github.com/pablo-mayrgundter/measure.js#readme"
 }
