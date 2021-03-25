@@ -1,5 +1,5 @@
 {
-  "name": "measure.js",
+  "name": "@pablo-mayrgundter/measure.js",
   "version": "1.0.0",
   "description": "Utility for working with measurements in common units and magnitudes.",
   "main": "Measure.js",
@@ -14,7 +14,12 @@
     "type": "git",
     "url": "git+https://github.com/pablo-mayrgundter/measure.js.git"
   },
-  "keywords": ["measure", "units", "unit converter", "utility"],
+  "keywords": [
+    "measure",
+    "units",
+    "unit converter",
+    "utility"
+  ],
   "author": "Pablo Mayrgundter",
   "license": "ISC",
   "bugs": {
