@@ -3,23 +3,6 @@ const unitByName = {};
 
 export default class Unit {
 
-  static METER = new Unit('meter', 'm', 'length');
-  static GRAM = new Unit('gram', 'g', 'mass');
-  static SECOND = new Unit('second', 's', 'time');
-  static AMPERE = new Unit('ampere', 'A', 'electric current');
-  static KELVIN = new Unit('kelvin', 'K', 'temperature');
-  static CANDELA = new Unit('candela', 'cd', 'luminous intensity');
-  static MOLE = new Unit('mole', 'mol', 'amount of substance');
-
-  static lookup(str) {
-    const unit = unitByAbbrev[str];
-    if (unit) {
-      return unit;
-    }
-    return unitByName[str];
-  }
-
-
   constructor(name, abbrev, dimension) {
     this.name = name;
     this.abbrev = abbrev;
@@ -33,3 +16,24 @@ export default class Unit {
     return this.name;
   }
 }
+
+
+// TODO: declare the following as static after Safari adopts:
+// https://github.com/tc39/proposal-static-class-features
+  Unit.lookup = str => {
+    const unit = unitByAbbrev[str];
+    if (unit) {
+      return unit;
+    }
+    return unitByName[str];
+  }
+
+
+
+  Unit.METER = new Unit('meter', 'm', 'length');
+  Unit.GRAM = new Unit('gram', 'g', 'mass');
+  Unit.SECOND = new Unit('second', 's', 'time');
+  Unit.AMPERE = new Unit('ampere', 'A', 'electric current');
+  Unit.KELVIN = new Unit('kelvin', 'K', 'temperature');
+  Unit.CANDELA = new Unit('candela', 'cd', 'luminous intensity');
+  Unit.MOLE = new Unit('mole', 'mol', 'amount of substance');

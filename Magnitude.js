@@ -2,40 +2,6 @@ const magnitudeByAbbrev = {};
 const magnitudeByName = {};
 
 export default class Magnitude {
-
-
-  static YOTTA = new Magnitude(24, 'yotta', 'Y');
-  static ZETTA = new Magnitude(21, 'zetta', 'Z');
-  static EXA = new Magnitude(18, 'exa', 'E');
-  static PETA = new Magnitude(15, 'peta', 'P');
-  static TERA = new Magnitude(12, 'tera', 'T');
-  static GIGA = new Magnitude(9, 'giga', 'G');
-  static MEGA = new Magnitude(6, 'mega', 'M');
-  static KILO = new Magnitude(3, 'kilo', 'k');
-  static HECTO = new Magnitude(2, 'hecto', 'h');
-  static DECA = new Magnitude(1, 'deca', 'D');
-  static UNIT = new Magnitude(0, '', '');
-  static DECI = new Magnitude(-1, 'deci', 'd');
-  static CENTI = new Magnitude(-2, 'centi', 'c');
-  static MILLI = new Magnitude(-3, 'milli', 'm');
-  static MICRO = new Magnitude(-6, 'micro', '\u03BC');
-  static NANO = new Magnitude(-9, 'nano', 'n');
-  static PICO = new Magnitude(-12, 'pico', 'p');
-  static FEMTO = new Magnitude(-15, 'femto', 'f');
-  static ATTO = new Magnitude(-18, 'atto', 'a');
-  static ZETO = new Magnitude(-21, 'zepto', 'z');
-  static YOCTO = new Magnitude(-24, 'yocto', 'y');
-
-
-  static lookup(str) {
-    const magnitude = magnitudeByAbbrev[str];
-    if (magnitude) {
-      return magnitude;
-    }
-    return magnitudeByName[str];
-  }
-
-
   constructor(exponent, name, abbrev) {
     this.exponent = exponent;
     this.name = name;
@@ -61,3 +27,37 @@ export default class Magnitude {
     return this.name;
   }
 }
+
+
+// TODO: declare the following as static after Safari adopts:
+// https://github.com/tc39/proposal-static-class-features
+  Magnitude.lookup = str => {
+    const magnitude = magnitudeByAbbrev[str];
+    if (magnitude) {
+      return magnitude;
+    }
+    return magnitudeByName[str];
+  }
+
+
+  Magnitude.YOTTA = new Magnitude(24, 'yotta', 'Y');
+  Magnitude.ZETTA = new Magnitude(21, 'zetta', 'Z');
+  Magnitude.EXA = new Magnitude(18, 'exa', 'E');
+  Magnitude.PETA = new Magnitude(15, 'peta', 'P');
+  Magnitude.TERA = new Magnitude(12, 'tera', 'T');
+  Magnitude.GIGA = new Magnitude(9, 'giga', 'G');
+  Magnitude.MEGA = new Magnitude(6, 'mega', 'M');
+  Magnitude.KILO = new Magnitude(3, 'kilo', 'k');
+  Magnitude.HECTO = new Magnitude(2, 'hecto', 'h');
+  Magnitude.DECA = new Magnitude(1, 'deca', 'D');
+  Magnitude.UNIT = new Magnitude(0, '', '');
+  Magnitude.DECI = new Magnitude(-1, 'deci', 'd');
+  Magnitude.CENTI = new Magnitude(-2, 'centi', 'c');
+  Magnitude.MILLI = new Magnitude(-3, 'milli', 'm');
+  Magnitude.MICRO = new Magnitude(-6, 'micro', '\u03BC');
+  Magnitude.NANO = new Magnitude(-9, 'nano', 'n');
+  Magnitude.PICO = new Magnitude(-12, 'pico', 'p');
+  Magnitude.FEMTO = new Magnitude(-15, 'femto', 'f');
+  Magnitude.ATTO = new Magnitude(-18, 'atto', 'a');
+  Magnitude.ZETO = new Magnitude(-21, 'zepto', 'z');
+  Magnitude.YOCTO = new Magnitude(-24, 'yocto', 'y');

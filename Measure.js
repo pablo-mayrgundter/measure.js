@@ -20,34 +20,6 @@ import Magnitude from './Magnitude.js';
  * congruent with the usage of the other unit abbreviations.
  */
 export default class Measure {
-
-
-  /**
-   * @throws If the string does not contain a parsable measure.
-   */
-  static parse(s) {
-    if (typeof s != 'string') {
-      throw 'Given string is null or not string: ' + s;
-    }
-    //var MEASURE_PATTERN = new RegExp(/(-?\\d+(?:.\\d+)?(?:E\\d+)?)\\s*([khdnmgtpfaezy\u03BC]|(?:yotta|zetta|exa|peta|tera|giga|mega|kilo|hecto|deca|deci|centi|milli|micro|nano|pico|femto|atto|zepto|yocto))?\\s*([mgsAKLn]|(?:meter|gram|second|Ampere|Kelvin|candela|mole))/);
-    const m = s.match(/(-?\d+(?:.\d+)?(?:[eE]\d+)?)\s*([khdnmgtpfaezy\u03BC])?\s*([mgsAKLn])/);
-    if (!m) {
-      throw 'Could not parse measure from given string: ' + s;
-    }
-    const scalar = parseFloat(m[1]);
-    if (m.length == 2) {
-      const unit = m[2];
-      const ul = Unit.lookup(unit);
-      return new Measure(parseFloat(scalar), Magnitude.UNIT, ul);
-    }
-    const magnitude = m[2] || null;
-    const unit = m[3];
-    const ml = magnitude == null ? Magnitude.UNIT : Magnitude.lookup(magnitude);
-    const ul = Unit.lookup(unit);
-    return new Measure(scalar == null ? 0.0 : parseFloat(scalar), ml, ul);
-  }
-
-
   constructor(scalar, magnitude, unit) {
     if (typeof scalar != 'number') {
       throw 'Invalid scalar given: ' + scalar;
@@ -98,3 +70,36 @@ export default class Measure {
     return s;
   }
 }
+
+
+// TODO: declare the following as static after Safari adopts:
+// https://github.com/tc39/proposal-static-class-features
+
+
+Measure.Magnitude = Magnitude;
+Measure.Unit = Unit;
+  /**
+   * @throws If the string does not contain a parsable measure.
+   */
+Measure.parse = s => {
+    if (typeof s != 'string') {
+      throw 'Given string is null or not string: ' + s;
+    }
+    //var MEASURE_PATTERN = new RegExp(/(-?\\d+(?:.\\d+)?(?:E\\d+)?)\\s*([khdnmgtpfaezy\u03BC]|(?:yotta|zetta|exa|peta|tera|giga|mega|kilo|hecto|deca|deci|centi|milli|micro|nano|pico|femto|atto|zepto|yocto))?\\s*([mgsAKLn]|(?:meter|gram|second|Ampere|Kelvin|candela|mole))/);
+    const m = s.match(/(-?\d+(?:.\d+)?(?:[eE]\d+)?)\s*([khdnmgtpfaezy\u03BC])?\s*([mgsAKLn])/);
+    if (!m) {
+      throw 'Could not parse measure from given string: ' + s;
+    }
+    const scalar = parseFloat(m[1]);
+    if (m.length == 2) {
+      const unit = m[2];
+      const ul = Unit.lookup(unit);
+      return new Measure(parseFloat(scalar), Magnitude.UNIT, ul);
+    }
+    const magnitude = m[2] || null;
+    const unit = m[3];
+    const ml = magnitude == null ? Magnitude.UNIT : Magnitude.lookup(magnitude);
+    const ul = Unit.lookup(unit);
+    return new Measure(scalar == null ? 0.0 : parseFloat(scalar), ml, ul);
+  }
+
