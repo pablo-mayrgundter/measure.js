@@ -1,4 +1,5 @@
 # measure.js
+[![Node.js Package](https://github.com/pablo-mayrgundter/measure.js/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/pablo-mayrgundter/measure.js/actions/workflows/npm-publish.yml)
 Utility for working with measurements in common units and magnitudes.
 
 Units: meter, gram, second, ampere, kelvin, candela, mole
