@@ -9,7 +9,10 @@ Magnitudes: Yotta (10^24) - Yocto (10^-24)
 
 Example usage:
 ```javascript
-import Measure from './measure.js';
+// Install npm package: npm i @pablo-mayrgundter/measure.js
+import Measure from '@pablo-mayrgundter/measure.js/Measure.js';
+// or if you clone from git:
+// import Measure from './Measure.js';
 
 const m1 = Measure.parse('1000m');
 const m2 = Measure.parse('1km');
