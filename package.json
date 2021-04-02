@@ -1,14 +1,13 @@
 {
   "name": "@pablo-mayrgundter/measure.js",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Utility for working with measurements in common units and magnitudes.",
-  "main": "Measure.js",
+  "main": "js/Measure.js",
   "type": "module",
-  "directories": {
-    "lib": "lib"
-  },
   "scripts": {
-    "test": "echo \"TODO: add test\""
+    "test": "node js/Measure_test.js",
+    "build": "npx rollup -c",
+    "test-dist": "node Measure_test.js"
   },
   "repository": {
     "type": "git",
@@ -25,5 +24,11 @@
   "bugs": {
     "url": "https://github.com/pablo-mayrgundter/measure.js/issues"
   },
-  "homepage": "https://github.com/pablo-mayrgundter/measure.js#readme"
+  "homepage": "https://github.com/pablo-mayrgundter/measure.js#readme",
+  "dependencies": {
+    "@pablo-mayrgundter/testing.js": "^1.0.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^11.2.1"
+  }
 }

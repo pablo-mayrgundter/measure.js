@@ -1,13 +1,14 @@
-import Testing from './lib/testing.js/testing.mjs';
-import Magnitude from './Magnitude.js';
+import Testing from '@pablo-mayrgundter/testing.js/testing.js';
 import Measure from './Measure.js';
-import Unit from './Unit.js';
 
 const tests = new Testing();
 
 function assertEquals(expected, actual) {
   tests.assertTrue(expected.equals(actual), `expected: ${expected}, actual: ${actual}`);
 }
+
+const Magnitude = Measure.Magnitude;
+const Unit = Measure.Unit;
 
 // Magnitude
 tests.add('Magnitude from', () => {

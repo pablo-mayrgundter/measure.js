@@ -1,106 +1,6 @@
-const magnitudeByAbbrev = {};
-const magnitudeByName = {};
+import Magnitude from './Magnitude.js';
+import Unit from './Unit.js';
 
-class Magnitude {
-  constructor(exponent, name, abbrev) {
-    this.exponent = exponent;
-    this.name = name;
-    this.abbrev = abbrev;
-    magnitudeByName[name] = this;
-    magnitudeByAbbrev[abbrev] = this;
-  }
-
-
-  /**
-   * Converts the given scalar in the given magnitude to the
-   * equivalent scalar in this magnitude.
-   */
-  from(scalar, mag) {
-    const expDiff = mag.exponent - this.exponent;
-    const mult = Math.pow(10, expDiff);
-    const result = scalar * mult;
-    return result;
-  }
-
-
-  toString() {
-    return this.name;
-  }
-}
-
-
-// TODO: declare the following as static after Safari adopts:
-// https://github.com/tc39/proposal-static-class-features
-  Magnitude.lookup = str => {
-    const magnitude = magnitudeByAbbrev[str];
-    if (magnitude) {
-      return magnitude;
-    }
-    return magnitudeByName[str];
-  };
-
-
-  Magnitude.YOTTA = new Magnitude(24, 'yotta', 'Y');
-  Magnitude.ZETTA = new Magnitude(21, 'zetta', 'Z');
-  Magnitude.EXA = new Magnitude(18, 'exa', 'E');
-  Magnitude.PETA = new Magnitude(15, 'peta', 'P');
-  Magnitude.TERA = new Magnitude(12, 'tera', 'T');
-  Magnitude.GIGA = new Magnitude(9, 'giga', 'G');
-  Magnitude.MEGA = new Magnitude(6, 'mega', 'M');
-  Magnitude.KILO = new Magnitude(3, 'kilo', 'k');
-  Magnitude.HECTO = new Magnitude(2, 'hecto', 'h');
-  Magnitude.DECA = new Magnitude(1, 'deca', 'D');
-  Magnitude.UNIT = new Magnitude(0, '', '');
-  Magnitude.DECI = new Magnitude(-1, 'deci', 'd');
-  Magnitude.CENTI = new Magnitude(-2, 'centi', 'c');
-  Magnitude.MILLI = new Magnitude(-3, 'milli', 'm');
-  Magnitude.MICRO = new Magnitude(-6, 'micro', '\u03BC');
-  Magnitude.NANO = new Magnitude(-9, 'nano', 'n');
-  Magnitude.PICO = new Magnitude(-12, 'pico', 'p');
-  Magnitude.FEMTO = new Magnitude(-15, 'femto', 'f');
-  Magnitude.ATTO = new Magnitude(-18, 'atto', 'a');
-  Magnitude.ZETO = new Magnitude(-21, 'zepto', 'z');
-  Magnitude.YOCTO = new Magnitude(-24, 'yocto', 'y');
-
-const unitByAbbrev = {};
-const unitByName = {};
-
-class Unit {
-
-  constructor(name, abbrev, dimension) {
-    this.name = name;
-    this.abbrev = abbrev;
-    this.dimension = dimension;
-    unitByAbbrev[abbrev] = this;
-    unitByName[name] = this;
-  }
-
-
-  toString() {
-    return this.name;
-  }
-}
-
-
-// TODO: declare the following as static after Safari adopts:
-// https://github.com/tc39/proposal-static-class-features
-  Unit.lookup = str => {
-    const unit = unitByAbbrev[str];
-    if (unit) {
-      return unit;
-    }
-    return unitByName[str];
-  };
-
-
-
-  Unit.METER = new Unit('meter', 'm', 'length');
-  Unit.GRAM = new Unit('gram', 'g', 'mass');
-  Unit.SECOND = new Unit('second', 's', 'time');
-  Unit.AMPERE = new Unit('ampere', 'A', 'electric current');
-  Unit.KELVIN = new Unit('kelvin', 'K', 'temperature');
-  Unit.CANDELA = new Unit('candela', 'cd', 'luminous intensity');
-  Unit.MOLE = new Unit('mole', 'mol', 'amount of substance');
 
 /**
  * Measure formatting and conversion utility.  The system of measure
@@ -119,7 +19,7 @@ class Unit {
  * represented as "Dg" instead of "dag" or "da gram", which is
  * congruent with the usage of the other unit abbreviations.
  */
-class Measure {
+export default class Measure {
   constructor(scalar, magnitude, unit) {
     if (typeof scalar != 'number') {
       throw 'Invalid scalar given: ' + scalar;
@@ -201,6 +101,5 @@ Measure.parse = s => {
   const ml = magnitude == null ? Magnitude.UNIT : Magnitude.lookup(magnitude);
   const ul = Unit.lookup(unit);
   return new Measure(scalar == null ? 0.0 : parseFloat(scalar), ml, ul);
-};
+}
 
-export default Measure;
