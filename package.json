@@ -1,34 +1,22 @@
 {
   "name": "@pablo-mayrgundter/measure.js",
-  "version": "1.0.7",
+  "version": "2.0.0",
   "description": "Utility for working with measurements in common units and magnitudes.",
-  "main": "js/Measure.js",
-  "type": "module",
-  "scripts": {
-    "test": "node js/Measure_test.js",
-    "build": "npx rollup -c",
-    "test-dist": "node Measure_test.js"
-  },
+  "homepage": "https://github.com/pablo-mayrgundter/measure.js#readme",
+  "author": "Pablo Mayrgundter",
+  "license": "ISC",
+  "keywords": [ "measure", "units", "unit converter", "utility" ],
+  "bugs": { "url": "https://github.com/pablo-mayrgundter/measure.js/issues" },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pablo-mayrgundter/measure.js.git"
   },
-  "keywords": [
-    "measure",
-    "units",
-    "unit converter",
-    "utility"
-  ],
-  "author": "Pablo Mayrgundter",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/pablo-mayrgundter/measure.js/issues"
-  },
-  "homepage": "https://github.com/pablo-mayrgundter/measure.js#readme",
-  "dependencies": {
-    "@pablo-mayrgundter/testing.js": "^1.0.0"
+  "type": "module",
+  "scripts": {
+    "build": "esbuild js/Measure.js --bundle --outfile=index.js",
+    "test": "node js/Measure_test.js"
   },
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "^11.2.1"
+    "@pablo-mayrgundter/testing.js": "^1.0.0"
   }
 }
