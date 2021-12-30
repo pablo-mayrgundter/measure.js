@@ -1,6 +1,6 @@
 {
   "name": "@pablo-mayrgundter/measure.js",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Utility for working with measurements in common units and magnitudes.",
   "homepage": "https://github.com/pablo-mayrgundter/measure.js#readme",
   "author": "Pablo Mayrgundter",
@@ -13,7 +13,7 @@
   },
   "type": "module",
   "scripts": {
-    "build": "esbuild js/Measure.js --bundle --outfile=index.js",
+    "build": "esbuild js/Measure.js --bundle --format=esm --outfile=index.js",
     "test": "node js/Measure_test.js"
   },
   "devDependencies": {
